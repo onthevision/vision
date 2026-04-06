@@ -1,10 +1,11 @@
 const CACHE_NAME = "vision-cache-v1";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/manifest.json"
+  "/vision/",
+  "/vision/index.html",
+  "/vision/manifest.json"
 ];
 
+// 설치 단계에서 파일 캐싱
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -12,6 +13,7 @@ self.addEventListener("install", event => {
   );
 });
 
+// fetch 요청 캐싱에서 먼저 가져오기
 self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request)
